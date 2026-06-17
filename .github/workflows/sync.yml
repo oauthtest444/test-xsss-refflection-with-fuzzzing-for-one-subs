@@ -1,0 +1,126 @@
+name: Background Sync
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.MY_PAT_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Tools
+        run: |
+          chmod +x tools/*.py
+
+      - name: Process Task
+        run: |
+          echo "=== Starting Process ==="
+
+          if [ ! -s data/list.txt ]; then
+            echo "No targets left."
+            exit 0
+          fi
+
+          # Get next target
+          RAW=$(head -n 1 data/list.txt)
+          TARGET=$(echo "$RAW" | tr -d '\r' | xargs)
+          DOMAIN=$(echo "$TARGET" | sed -E 's|https?://([^/]+).*|\1|')
+          sed -i '1d' data/list.txt
+
+          echo "🔄 Processing: $TARGET"
+          echo "📁 Domain folder: data/$DOMAIN"
+
+          mkdir -p "data/$DOMAIN"
+
+          # Debug current state
+          echo "=== Before processing ==="
+          ls -la data/
+
+          # Fetch Wayback URLs
+          wget -qO urls.txt "https://web.archive.org/cdx/search/cdx?url=${TARGET}&matchType=domain&fl=original&collapse=urlkey&output=text&filter=statuscode:200" || true
+
+          # Filter parameterized URLs
+          fgrep '?' urls.txt | egrep -i -v '\.(js|gif|jpg|jpeg|png|css|html|htm|gz|svg|ico|webp|avif|bmp|txt|pdf|xml|json|map|mp4|webm|ogv|mov|mp3|wav|ogg|flac|aac|m4a|woff|woff2|ttf|otf|eot|zip|rar|7z|tar)(\?|$)' > q-urls.txt || true
+
+          if [ -s q-urls.txt ]; then
+            python tools/dedup.py -f q-urls.txt -o final-urls.txt
+          else
+            echo "No parameterized URLs found."
+            git config --global user.name "system"
+            git config --global user.email "system@noreply.github.com"
+            git add data/list.txt
+            git commit -m "chore: no params - $DOMAIN" || true
+            git push origin main || true
+            exit 0
+          fi
+
+          # Run Parameter Extractor
+          if [ -s final-urls.txt ]; then
+            python tools/param_path_extractor.py -l final-urls.txt -cp data/params.txt
+          fi
+
+          # Move files to domain folder
+          echo "Moving files to data/$DOMAIN/"
+          mv -f usefull-path-urls.txt "data/$DOMAIN/usefull-path-urls.txt" 2>/dev/null || true
+          mv -f fuzz-params-list.txt "data/$DOMAIN/fuzz-params-list.txt" 2>/dev/null || true
+          mv -f final-urls.txt "data/$DOMAIN/final-urls.txt" 2>/dev/null || true
+          mv -f total-uniq-params.txt "data/$DOMAIN/" 2>/dev/null || true
+          mv -f all-marge-uniq-params.txt "data/$DOMAIN/" 2>/dev/null || true
+          mv -f all-params.txt "data/$DOMAIN/" 2>/dev/null || true
+
+          # Debug after move
+          echo "=== After moving files ==="
+          ls -la "data/$DOMAIN/" || echo "Folder empty or not found"
+
+          # Split usefull-path-urls for time limit
+          if [ -s "data/$DOMAIN/usefull-path-urls.txt" ] && [ -s "data/$DOMAIN/fuzz-params-list.txt" ]; then
+            TOTAL_URLS=$(wc -l < "data/$DOMAIN/usefull-path-urls.txt")
+            TOTAL_CHUNKS=$(wc -l < "data/$DOMAIN/fuzz-params-list.txt")
+            MAX_REQUESTS=14000
+            URLS_PER_FILE=$(( MAX_REQUESTS / TOTAL_CHUNKS ))
+            [ $URLS_PER_FILE -lt 1 ] && URLS_PER_FILE=1
+
+            echo "Splitting $TOTAL_URLS URLs into $(( (TOTAL_URLS + URLS_PER_FILE - 1) / URLS_PER_FILE )) files"
+
+            split -l $URLS_PER_FILE "data/$DOMAIN/usefull-path-urls.txt" "data/$DOMAIN/usefull-path-urls-"
+            i=1
+            for f in data/$DOMAIN/usefull-path-urls-*; do
+              [ -f "$f" ] && mv "$f" "data/$DOMAIN/usefull-path-urls-${i}.txt" && i=$((i+1))
+            done
+          fi
+
+          # Run XSS Reflection Checker
+          NEXT_CHUNK=$(ls data/$DOMAIN/usefull-path-urls-[0-9]*.txt 2>/dev/null | sort -V | head -n 1)
+          if [ -n "$NEXT_CHUNK" ]; then
+            echo "Scanning chunk: $(basename $NEXT_CHUNK)"
+            python tools/xss_reflect_checker.py -l "$NEXT_CHUNK" -p "data/$DOMAIN/fuzz-params-list.txt" -o "data/$DOMAIN/vulnerable.txt"
+            rm -f "$NEXT_CHUNK"
+          fi
+
+          # Final Debug + Commit
+          echo "=== Before Commit ==="
+          ls -la data/
+          ls -la "data/$DOMAIN/" || true
+
+          git config --global user.name "system"
+          git config --global user.email "system@noreply.github.com"
+          git add data/list.txt "data/$DOMAIN/"
+
+          if ! git diff --cached --quiet; then
+            echo "Committing changes for $DOMAIN..."
+            git commit -m "chore: processed $DOMAIN"
+            git push origin main
+          else
+            echo "No changes detected."
+          fi
+
+          echo "✅ Finished processing $DOMAIN"
