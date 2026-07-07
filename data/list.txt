@@ -1,4 +1,3 @@
-templates.office.com
 store.office.com
 teamsdemo.office.com
 connectivity.office.com
