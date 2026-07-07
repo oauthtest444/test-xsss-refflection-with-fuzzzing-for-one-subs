@@ -1,0 +1,5 @@
+https://sender.office.com/
+https://sender.office.com/bundles/bootstrap
+https://sender.office.com/Delist/DelistIP
+https://sender.office.com/Delist/Escalation
+https://sender.office.com/Delist/HandleHIP

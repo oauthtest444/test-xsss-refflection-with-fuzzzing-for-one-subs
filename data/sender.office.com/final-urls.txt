@@ -1,0 +1,6 @@
+https://sender.office.com/?ref=blog.kickbox.com
+https://sender.office.com/bundles/bootstrap?v=2Fz3B0iizV2NnnamQFrx-NbYJNTFeBJ2GM05SilbtQU1
+https://sender.office.com/Delist/DelistIP?email=a2utest@forums.archivists.org&ip=206.193.230.105&ttl=636246047891349218&token=cdSPETkILtOAZk8dEIUC7cKDmr0C77z8YdWMwowomaM=
+https://sender.office.com/Delist/Escalation?Email=jon@firstb.ca&IP=66.96.186.2&Ttl=638107957487773803&SecureToken=I7qUY7auztC6BOJREJqIqJ3MPLvA9ETHo7o7Ihv1a2s=&DataValidationStatus=Pass&Response=Fail: &DelistEscalationStatus=FailedAndPendingEscalation&Message=The request to delist IP address 66.96.186.2 has been denied. If you believe that you're receiving this message in error, you can request an escalation below.&Escalation=True
+https://sender.office.com/Delist/HandleHIP?Solution=5JMLG&ChallengeId=9fada6d9-2d36-40f1-873d-702d4743c727&AzureRegion=EastUS&ChallengeType=visual
+https://sender.office.com/Delist/HandleHIP?Token=NCU.8bcaaea72a1645c890e8cd5f9646986b&Type=visual&EncryptedInRealFlowID=73e96ddbe529aaa848a435a29858c504
