@@ -1,4 +1,3 @@
-products.office.com
 onenote.office.com
 sender.office.com
 config.office.com
