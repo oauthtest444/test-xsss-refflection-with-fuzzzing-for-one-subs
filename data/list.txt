@@ -1,4 +1,3 @@
-onenote.office.com
 sender.office.com
 config.office.com
 status.office.com
