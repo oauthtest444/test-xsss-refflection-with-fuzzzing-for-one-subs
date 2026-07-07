@@ -1,1 +1,13 @@
-apps.powerapps.com
+insider.office.com
+sway.office.com
+templates.office.com
+store.office.com
+teamsdemo.office.com
+connectivity.office.com
+forms.office.com
+products.office.com
+onenote.office.com
+sender.office.com
+config.office.com
+status.office.com
+office.com
