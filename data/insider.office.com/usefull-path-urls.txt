@@ -1,0 +1,12 @@
+https://insider.office.com/
+https://insider.office.com/api/content/categories
+https://insider.office.com/api/content/categoryfiltered/post
+https://insider.office.com/api/content
+https://insider.office.com/blog/3-things-to-know-about-office-insider-release-notes
+https://insider.office.com/de-de/blog/paste-text-only-shortcut-in-word
+https://insider.office.com/en-us/blog/add-flipgrid-videos-in-powerpoint
+https://insider.office.com/en-us/blog/integrate-a-live-camera-feed-into-your-presentation-with-cameo-in-powerpoint
+https://insider.office.com/en-us/blog/office-apps-now-support-opendocument-format-odf-1-3
+https://insider.office.com/en-us/blog
+https://insider.office.com/en-us/newsletter
+https://insider.office.com/en-us
