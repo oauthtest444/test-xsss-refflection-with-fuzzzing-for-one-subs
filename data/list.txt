@@ -1,3 +1,2 @@
-config.office.com
 status.office.com
 office.com

@@ -1,0 +1,8 @@
+https://config.office.com/
+https://config.office.com/api/filelist
+https://config.office.com/deploymentsettings
+https://config.office.com/deploymentsettingshttps://config.office.com/deploymentsettingswww.office.comhttps://admin.microsoft.comhttps://www.microsoft.com/en-us/download/details.aspx
+https://config.office.com/officeSettings/inventory/addIns/devices
+https://config.office.com/officeSettings/inventory/devices
+https://config.office.com/officeSettings/MPCurrentChannel
+https://config.office.com/officeSettings

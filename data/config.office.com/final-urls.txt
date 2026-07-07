@@ -1,0 +1,13 @@
+https://config.office.com/?l=en-us&trustedAuthority=cm
+https://config.office.com/?ref=blog.tophhie.cloud
+https://config.office.com/?trk=article-ssr-frontend-pulse_x-social-details_comments-action_comment-text
+https://config.office.com/api/filelist?Channel=FirstReleaseCurrent&Version=16.0.12228.20290&Arch=64&AllLanguages=True
+https://config.office.com/api/filelist?Lid=MatchOS
+https://config.office.com/deploymentsettings?eQOCIoY7Y4IkcU=6lN67Fz
+https://config.office.com/deploymentsettings?imMnWCvbWvm7mq5=maYbxoD
+https://config.office.com/deploymentsettingshttps://config.office.com/deploymentsettingswww.office.comhttps://admin.microsoft.comhttps://www.microsoft.com/en-us/download/details.aspx?id=49030
+https://config.office.com/officeSettings/inventory/addIns/devices?name=TeamViewer Meeting Add-In&version=15.40.8.0&architecture=X64&publisher=TeamViewer Germany GmbH
+https://config.office.com/officeSettings/inventory/devices?buildVersion=16.0.15028.20248&channel=MonthlyEnterpriseChannel
+https://config.office.com/officeSettings/inventory/devices?referrer=mac
+https://config.office.com/officeSettings/MPCurrentChannel?tab=Overview
+https://config.office.com/officeSettings?sso=mac
