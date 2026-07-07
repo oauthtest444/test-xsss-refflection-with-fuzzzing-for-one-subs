@@ -1,0 +1,3 @@
+https://connectivity.office.com/?azure-portal=true
+https://connectivity.office.com/?wt.mc_id=MVP_308367
+https://connectivity.office.com/Index?handler=LogLinkClicked&runId=fb5065f2-ffd9-43f9-9921-6396f2c069ce&linkName=NeedHelpClicked
