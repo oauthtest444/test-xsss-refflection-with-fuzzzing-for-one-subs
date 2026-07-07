@@ -1,0 +1,8 @@
+https://status.office.com/?ID=1024
+https://status.office.com/?SI_DocumentsList_TBLOrder=Sorter_DocName&SI_DocumentsList_TBLDir=ASC
+https://status.office.com/?ret_link=/Default.asp?vw_SI_KnowledgeBase_WebViOrder=Sorter_Title&vw_SI_KnowledgeBase_WebViDir=ASC&ID=1155&type=notLogged
+https://status.office.com/?vw_SI_KnowledgeBase_WebViOrder=Sorter_Title&vw_SI_KnowledgeBase_WebViDir=ASC
+https://status.office.com/?vw_SI_KnowledgeBase_WebViPage=4
+https://status.office.com/?ocid=usoc_TWITTER_M365_spl100001534242052
+https://status.office.com/?OCID=usoc_TWITTER_MicrosoftTeams_M365_spl100001534245062
+https://status.office.com/?WT.mc_id=M365-MVP-4039827
